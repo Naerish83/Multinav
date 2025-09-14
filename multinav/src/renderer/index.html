@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Multinav Control</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' http: https: ws:;">
+  <link rel="stylesheet" href="/control.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Multinav</h1>
+      <div class="sub">Left control. Right mirrors. Try not to break the internet.</div>
+    </header>
+
+    <section class="block">
+      <label>Navigate all</label>
+      <div class="row">
+        <input id="all-url" type="text" placeholder="https://example.com"/>
+        <button id="go-all">Go</button>
+        <button id="reload">Reload</button>
+      </div>
+    </section>
+
+    <section class="block">
+      <label>Per-pane navigation</label>
+      <div class="grid2">
+        <div class="row mini"><input data-i="0" class="one-url" type="text" placeholder="Pane 1 URL"><button data-i="0" class="go-one">Go</button></div>
+        <div class="row mini"><input data-i="1" class="one-url" type="text" placeholder="Pane 2 URL"><button data-i="1" class="go-one">Go</button></div>
+        <div class="row mini"><input data-i="2" class="one-url" type="text" placeholder="Pane 3 URL"><button data-i="2" class="go-one">Go</button></div>
+        <div class="row mini"><input data-i="3" class="one-url" type="text" placeholder="Pane 4 URL"><button data-i="3" class="go-one">Go</button></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <label>Broadcast typing</label>
+      <textarea id="typebox" rows="3" placeholder="Type here to send chars to all panes"></textarea>
+      <div class="row mini gap">
+        <button data-k="Tab" class="kbtn">Tab</button>
+        <button data-k="Enter" class="kbtn">Enter</button>
+        <button data-k="Backspace" class="kbtn">Backspace</button>
+        <button data-k="Escape" class="kbtn">Esc</button>
+        <button data-k="ArrowUp" class="kbtn">↑</button>
+        <button data-k="ArrowDown" class="kbtn">↓</button>
+        <button data-k="ArrowLeft" class="kbtn">←</button>
+        <button data-k="ArrowRight" class="kbtn">→</button>
+      </div>
+    </section>
+
+    <section class="block">
+      <label>Mirroring</label>
+      <div class="row">
+        <select id="source-pane">
+          <option value="0">Source: Pane 1</option>
+          <option value="1">Source: Pane 2</option>
+          <option value="2">Source: Pane 3</option>
+          <option value="3">Source: Pane 4</option>
+        </select>
+        <button id="toggle-mirror" data-on="0">Enable Mirror</button>
+      </div>
+      <div class="hint">When enabled, mouse/keys from the source pane are cloned to others with coordinate scaling.</div>
+    </section>
+
+    <section class="block">
+      <label>Layout</label>
+      <div class="row">
+        <button id="three">3-up</button>
+        <button id="four">4-up</button>
+      </div>
+    </section>
+
+    <footer>
+      <small>Built for King. If a site fights synthetic events, that’s on them.</small>
+    </footer>
+  </div>
+
+  <script type="module" src="/control.ts"></script>
+</body>
+</html>

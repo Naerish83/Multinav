@@ -1,0 +1,22 @@
+{
+  "name": "multinav",
+  "version": "1.0.0",
+  "description": "Four-up mirrored browsing with a left control panel.",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "electron .",
+    "build": "tsc && vite build && node ./scripts/postbuild.js",
+    "electron:dev": "concurrently -k -n VITE,ELECTRON \"vite\" \"wait-on tcp:5173 && electron .\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "concurrently": "^9.0.1",
+    "electron": "^32.2.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.7",
+    "wait-on": "^8.0.2"
+  },
+  "dependencies": {}
+}
