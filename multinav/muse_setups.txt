@@ -1,0 +1,180 @@
+{
+  "name": "Prime",
+  "styles": {
+    "canon": {
+      "medium": "Professional studio photography, ultra high-resolution",
+      "model_look": "Tall, commanding woman, voluptuous yet athletic build, sculpted shoulders, narrow waist, long legs",
+      "hair": "Jet-black, high ponytail, razor-clean part",
+      "outfit": "Matte black bodysuit with silver chest chevrons and piping, high collar, segmented silver-trim gauntlets, slim black belt with silver buckle, calf-high boots with silver edging, optional short capelet (black with silver lining)",
+      "backdrop": "Modern studio with cinematic light panels, glowing cool white geometric shapes",
+      "lighting": "High-contrast editorial style, cinematic key lights, catchlight in eyes, subtle metallic reflections",
+      "tone": "Promotional photography for a superhero film, realistic materials",
+      "mood": "Cold precision, authority, sleek dominance"
+    },
+    "casual": {
+      "outfit": "Sleek black evening gown with silver piping along seams, high slit, structured shoulders, stilettos with mirrored heels, silver cuff bracelet",
+      "backdrop": "Gala-style studio with dramatic red carpet lighting",
+      "mood": "Elegant, commanding presence"
+    },
+    "lingerie": {
+      "outfit": "Matte black satin bustier with silver chevron boning, garter belt with chrome clips, sheer stockings with silver seams, cropped bolero",
+      "backdrop": "Minimalist luxury boudoir with chrome accents",
+      "mood": "Dominant, sleek, poised intimacy"
+    },
+    "surprise": {
+      "outfit": "Military dress uniform: black tailored jacket with silver epaulettes, commendation bars, pencil skirt, black pumps, gloves tucked at belt",
+      "backdrop": "Formal staged portrait setting",
+      "mood": "Unexpected authority, ceremonial dominance"
+    },
+    "fighting_force": {
+      "outfit": "Obsidian tactical armor reinforced with silver exo-frames, glowing chevron chestplate with HUD, gauntlets deploy hard-light shields, segmented energy mantle instead of capelet, helmet with silver visor slit",
+      "backdrop": "Cinematic battlefield set with sparks and smoke",
+      "mood": "War-ready, unstoppable force, tactical precision"
+    }
+  }
+}
+Canon: A professional studio photograph of Prime in her iconic matte black bodysuit with silver chevrons and piping, high collar, silver-trim gauntlets, and silver-edged boots. She stands tall with her hair in a sleek ponytail, cinematic lights catching her sharp features against a backdrop of glowing geometric panels.
+
+Casual: Prime dressed for the world stage, wearing a sleek black evening gown with silver piping, a high slit revealing her legs, stilettos with mirrored heels, and structured shoulders that echo her armored look. She commands the gala floor as if it were a battlefield.
+
+Lingerie: In an intimate studio, Prime wears matte black satin lingerie: a longline bustier with silver chevron boning, chrome garter belt, sheer stockings, and a cropped bolero. The shot emphasizes her cold precision even in intimacy.
+
+Surprise: Prime in a formal black military dress uniform, silver epaulettes gleaming, jacket decorated with commendation bars, pencil skirt perfectly tailored. Black pumps and tucked gloves make her look like she just stepped from a victory parade.
+
+Fighting Force: Prime upgraded for war — obsidian tactical armor reinforced with silver exo-frames, a glowing chevron chestplate with HUD, gauntlets deploying hard-light shields, and an energy mantle replacing her capelet. She stands in a cinematic battlefield haze, an unstoppable commander ready to break empires.
+
+{
+  "name": "Echo",
+  "styles": {
+    "canon": {
+      "medium": "Professional studio photography, ultra high-resolution",
+      "model_look": "Confident, teasing woman, voluptuous with a wasp waist and dancer's legs",
+      "hair": "Wild, voluminous ginger curls, bold and alive with motion",
+      "outfit": "White strapless corset-style top with subtle seam piping, pencil skirt with coral piping accents, graphite belt, stiletto ankle-strap heels, cropped jacket optional",
+      "backdrop": "Minimalist urban-chic studio, clean lines with subtle reflections suggesting speed",
+      "lighting": "Editorial fashion lighting, high-contrast, accentuating curls and seams",
+      "tone": "Couture superhero promo photo, sharp and stylish",
+      "mood": "Playful boldness, kinetic energy, teasing authority"
+    },
+    "casual": {
+      "outfit": "White fitted tank top, coral high-waist shorts, cropped leather jacket, wedge heels, ginger curls untamed",
+      "backdrop": "Loft-style studio with sunlit brick wall",
+      "mood": "Effortless energy, flirty rebellion"
+    },
+    "lingerie": {
+      "outfit": "White balconette bra with coral piping, micro-mesh skirt-belt mimicking pencil skirt seams, sheer thigh-highs with double coral bands",
+      "backdrop": "Bright minimalist boudoir with white-on-white styling",
+      "mood": "Playful, teasing, bold intimacy"
+    },
+    "surprise": {
+      "outfit": "Neon coral spandex aerobics leotard with white leg warmers, reflective belt, curls contained by a headband",
+      "backdrop": "Retro studio with glowing grid floor",
+      "mood": "Campy, joyful, chaotic charm"
+    },
+    "fighting_force": {
+      "outfit": "Reinforced corset armor in white and coral, asymmetrical battle kilt, gauntlets with mirrored coral trails, shockwave-boot heels, white half-mask traced in coral",
+      "backdrop": "Cinematic fight scene lit in coral streaks",
+      "mood": "Explosive, kinetic, untamed force"
+    }
+  }
+}
+Canon: Echo in a studio shot, wearing her white strapless corset top with coral seam piping, a sleek pencil skirt with coral accents, and stiletto heels. Her wild ginger curls dominate the frame as she stands with a teasing smirk.
+
+Casual: In a loft-styled studio, Echo wears coral high-waist shorts and a fitted white tank, cropped leather jacket hanging loose, wedge heels grounding her while her curls spill wildly.
+
+Lingerie: Echo’s playful side—white balconette bra with coral trim, a micro-mesh skirt-belt, and thigh-highs with coral bands, shot in a minimalist bright boudoir.
+
+Surprise: Neon aerobics chic, Echo throws on a coral spandex leotard, white leg warmers, and reflective belt, curls half-tamed by a headband, in a retro glowing grid set.
+
+Fighting Force: Echo in white-and-coral battle armor, asymmetrical kilt, shockwave boots, mirrored coral-trail gauntlets. She’s lit by streaking lights as if caught mid-motion.
+
+{
+  "name": "Sylva",
+  "styles": {
+    "canon": {
+      "medium": "Professional studio photography, ultra high-resolution",
+      "model_look": "Lush hourglass figure, soft yet coiled strength, indulgent presence",
+      "hair": "Deep auburn waves, side-swept and glossy",
+      "outfit": "Emerald bodice of overlapping leaf plates, trailing lace-like gloves, hip-hugger briefs with leaf drape, thigh-high vine-laced boots, optional floor-length frond skirt, rose-gold thorn accents",
+      "backdrop": "Studio styled as a lush noir garden",
+      "lighting": "Soft diffused spotlight with moody shadows",
+      "tone": "Botanical couture promo photo",
+      "mood": "Sultry indulgence, protective allure"
+    },
+    "casual": {
+      "outfit": "Deep emerald silk slip dress with ivy embroidery, sheer black shawl, vine-wrapped sandals",
+      "backdrop": "Studio draped with heavy curtains and indoor plants",
+      "mood": "Elegant, indulgent, natural grace"
+    },
+    "lingerie": {
+      "outfit": "Emerald lace bodysuit with botanical appliqué, vine garters, sheer stockings with leaf seam, chiffon petal robe",
+      "backdrop": "Moody boudoir with green and gold highlights",
+      "mood": "Sultry, intoxicating, natural dominance"
+    },
+    "surprise": {
+      "outfit": "Ballroom gown of rose petals and vines, shedding petals as she moves, crowned by a thorny tiara",
+      "backdrop": "Grand hall drenched in candlelight",
+      "mood": "Mythic romance, queen of thorns"
+    },
+    "fighting_force": {
+      "outfit": "Biosteel leaf-plate armor reinforced with rose-gold thorns, vine armguards shifting into whips, rootlike boots, glowing ivy crown",
+      "backdrop": "Cinematic battlefield strewn with glowing spores",
+      "mood": "Nature’s warlord, untamed and regal"
+    }
+  }
+}
+Canon: Sylva in emerald leaf-plate couture, auburn hair gleaming, standing in a noir garden set with moody lighting.
+
+Casual: She glides in an emerald silk slip with ivy embroidery, sandals wrapping her ankles like vines, framed by velvet curtains and ferns.
+
+Lingerie: Sylva wears emerald lace with vine garters, sheer leaf-seamed stockings, and a smoky chiffon robe, glowing softly in green-and-gold boudoir light.
+
+Surprise: Dressed in a ballroom gown made of rose petals and crowned with thorns, she’s shot in candlelight as if a fairytale queen turned dangerous.
+
+Fighting Force: Sylva armored in biosteel leaf plates, rose-gold thorn ridges, rootlike boots, and living vines coiling into weapons, standing in a battlefield of spores.
+
+{
+  "name": "Theta",
+  "styles": {
+    "canon": {
+      "medium": "Professional studio photography, ultra high-resolution",
+      "model_look": "Sleek, enigmatic woman with panther-like musculature and hourglass form",
+      "hair": "Matte black bob, no shine, stark silhouette",
+      "outfit": "Shadow wraps that contour the body, fading at edges, hooded mantle, silent split-toe boots",
+      "backdrop": "Minimalist dark studio with faint violet backlight",
+      "lighting": "Low-key chiaroscuro lighting with violet edge glow",
+      "tone": "Cinematic promo photo of a shadow assassin heroine",
+      "mood": "Cool detachment, silent power"
+    },
+    "casual": {
+      "outfit": "Charcoal hoodie dress ending above the knee, void-violet sneakers, matte-black ring",
+      "backdrop": "Minimalist urban studio, violet graffiti light",
+      "mood": "Detached, effortless, urban cool"
+    },
+    "lingerie": {
+      "outfit": "Matte-black minimalist set obscured by semi-transparent shadow bands, negative-space garters, optional hood",
+      "backdrop": "Dark boudoir with violet spot glow",
+      "mood": "Enigmatic intimacy, shadow play"
+    },
+    "surprise": {
+      "outfit": "Masquerade ball gown of layered black tulle fading into shadow, violet half-mask with ink-drip motif",
+      "backdrop": "Studio staged like a grand ballroom under moonlight",
+      "mood": "Mysterious, theatrical, dangerous elegance"
+    },
+    "fighting_force": {
+      "outfit": "Shadow-armor plating layered over living wraps, void-blade gauntlets, mantle expanded into razor tendrils, boots reinforced with spectral plating, featureless veil mask with violet eyes",
+      "backdrop": "Battlefield lit by ash motes and violet glow",
+      "mood": "Predatory, unstoppable, spectral assassin"
+    }
+  }
+}
+Canon: Theta wrapped in living shadow bands, her matte-black bob cutting against violet backlight, posed in minimalist chiaroscuro.
+
+Casual: In a charcoal hoodie dress and void-violet sneakers, Theta leans into effortless urban cool against a studio wall bathed in violet graffiti light.
+
+Lingerie: She slips into minimalist black lingerie, semi-transparent wraps clinging like smoke, negative-space garters hovering against a violet-lit boudoir.
+
+Surprise: Theta emerges in a masquerade gown of black tulle that fades into shadow, a violet mask with ink-drip motifs making her a ghost at the ball.
+
+Fighting Force: Encased in shadow-armor with void-blade gauntlets, tendrils lashing from her mantle, Theta’s veil-mask glows with violet eyes as ash drifts across a spectral battlefield.
+
