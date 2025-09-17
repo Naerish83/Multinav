@@ -1,22 +1,58 @@
 {
   "name": "multinav",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Four-up mirrored browsing with a left control panel.",
   "main": "dist/main.js",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:esbuild": "esbuild --bundle src/main.ts src/preload_control.ts src/preload_view.ts --outdir=dist --platform=node --format=cjs --external:electron --sourcemap --watch",
+    "electron:dev": "concurrently -k -n ESB,VITE,ELECTRON \"npm:dev:esbuild\" \"vite\" \"wait-on tcp:5173 dist/main.js && electron .\"",
     "start": "electron .",
-    "build": "tsc && vite build && node ./scripts/postbuild.js",
-    "electron:dev": "concurrently -k -n VITE,ELECTRON \"vite\" \"wait-on tcp:5173 && electron .\""
+    "build": "esbuild --bundle src/main.ts src/preload_control.ts src/preload_view.ts --outdir=dist --platform=node --format=cjs --external:electron && vite build",
+    "dist": "npm run build && electron-builder -w"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
     "concurrently": "^9.0.1",
     "electron": "^32.2.0",
+    "electron-builder": "^24.13.3",
+    "esbuild": "^0.23.0",
     "typescript": "^5.5.4",
     "vite": "^5.4.7",
     "wait-on": "^8.0.2"
   },
-  "dependencies": {}
+  "build": {
+    "appId": "com.musesystems.multinav",
+    "productName": "Multinav",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "files": [
+      "dist/**",
+      "!dist/**/*.map"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false
+    }
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }
