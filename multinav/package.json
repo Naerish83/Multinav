@@ -4,10 +4,14 @@
   "description": "Four-up mirrored browsing with a left control panel.",
   "main": "dist/main.js",
   "scripts": {
+    "build:main": "esbuild src/main.ts --bundle --outfile=dist/main.js --platform=node --format=cjs --external:electron --sourcemap",
+    "build:preload:view": "esbuild src/preload_view.ts --bundle --outfile=dist/preload_view.js --platform=node --format=cjs --external:electron --sourcemap",
+    "build:preload:control": "esbuild src/preload_control.ts --bundle --outfile=dist/preload_control.js --platform=node --format=cjs --external:electron --sourcemap",
+    "build:web": "vite build",
+    "build": "npm run build:main && npm run build:preload:view && npm run build:preload:control && npm run build:web",
     "dev:esbuild": "esbuild --bundle src/main.ts src/preload_control.ts src/preload_view.ts --outdir=dist --platform=node --format=cjs --external:electron --sourcemap --watch",
-    "electron:dev": "concurrently -k -n ESB,VITE,ELECTRON \"npm:dev:esbuild\" \"vite\" \"wait-on tcp:5173 dist/main.js && electron .\"",
-    "start": "electron .",
-    "build": "esbuild --bundle src/main.ts src/preload_control.ts src/preload_view.ts --outdir=dist --platform=node --format=cjs --external:electron && vite build",
+    "electron:dev": "concurrently -k -n ESB,VITE,ELECTRON \"npm:dev:esbuild\" \"vite\" \"wait-on tcp:5173 dist/main.js && electron dist/main.js\"",
+    "start": "electron dist/main.js",
     "dist": "npm run build && electron-builder -w"
   },
   "devDependencies": {
@@ -15,9 +19,9 @@
     "concurrently": "^9.0.1",
     "electron": "^32.2.0",
     "electron-builder": "^24.13.3",
-    "esbuild": "^0.23.0",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.7",
+    "esbuild": "^0.21.0",
+    "typescript": "~5.4.0",
+    "vite": "^5",
     "wait-on": "^8.0.2"
   },
   "build": {
