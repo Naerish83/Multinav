@@ -15,6 +15,13 @@ const wcToIndex = new Map<number, number>();
 const outlineCssKeys: (string | null)[] = [null, null, null, null];
 let sharedZoom = 1.0;
 
+const DIST_DIR = path.basename(__dirname) === 'dist'
+  ? __dirname
+  : path.join(__dirname, '..', 'dist');
+const CONTROL_PRELOAD_PATH = path.join(DIST_DIR, 'preload_control.js');
+const VIEW_PRELOAD_PATH = path.join(DIST_DIR, 'preload_view.js');
+const CONTROL_INDEX_HTML = path.join(DIST_DIR, 'renderer', 'index.html');
+
 // -------- ADDITIVE: Input modes --------
 type InputMode = 'control' | 'mirror' | 'none';
 let inputMode: InputMode = 'control';
@@ -66,18 +73,19 @@ function createMainWindow() {
   // Control panel on the left
   controlView = new BrowserView({
     webPreferences: {
-      preload: path.join(__dirname, 'preload_control.js'),
+      preload: CONTROL_PRELOAD_PATH,
       sandbox: true,
-      contextIsolation: true
+      contextIsolation: true,
+      nodeIntegration: false
     }
   });
   mainWin.addBrowserView(controlView);
 
   // Load control UI from Vite dev server ONLY if explicitly set; otherwise from built file
   const devServer = process.env.VITE_DEV_SERVER_URL; // e.g. "http://localhost:5173"
-  const controlURL = app.isPackaged
-    ? url.pathToFileURL(path.join(process.resourcesPath, 'renderer', 'index.html')).toString()
-    : (devServer ?? url.pathToFileURL(path.join(__dirname, 'renderer', 'index.html')).toString());
+  const controlURL = devServer
+    ? devServer
+    : url.pathToFileURL(CONTROL_INDEX_HTML).toString();
 
   controlView.webContents.loadURL(controlURL);
 
@@ -96,7 +104,7 @@ function createMainWindow() {
   for (let i = 0; i < 4; i++) {
     const v = new BrowserView({
       webPreferences: {
-        preload: path.join(__dirname, 'preload_view.js'),
+        preload: VIEW_PRELOAD_PATH,
         sandbox: true,
         contextIsolation: true,
         nodeIntegration: false,
