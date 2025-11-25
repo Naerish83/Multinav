@@ -159,9 +159,9 @@ function scrapeGemini(): string | null {
 }
 
 
-// Copilot (copilot.microsoft.com / bing.com/chat)
-function scrapeCopilot(): string | null {
-  const nodes = document.querySelectorAll<HTMLElement>('[aria-live="polite"], .adaptive-card, .contentContainer, .response-message');
+// Claude (claude.ai)
+function scrapeClaude(): string | null {
+  const nodes = document.querySelectorAll<HTMLElement>('[aria-live="polite"], .adaptive-card, .contentContainer, .response-message, [data-testid="message-content"]');
   for (let i = nodes.length - 1; i >= 0; i--) {
     const t = nodes[i].innerText.trim();
     if (t) return t;
@@ -261,8 +261,8 @@ function scrapeGeneric(): string | null {
     oncePerChange(scrapeGemini, emit, { provider: 'gemini' });
     return;
   }
-  if (/copilot\.microsoft\.com|bing\.com/i.test(host)) {
-    oncePerChange(scrapeCopilot, emit, { provider: 'copilot' });
+  if (/claude\.ai/i.test(host)) {
+    oncePerChange(scrapeClaude, emit, { provider: 'claude' });
     return;
   }
 if (/grok\.com|chat\.x\.ai/i.test(host)) {

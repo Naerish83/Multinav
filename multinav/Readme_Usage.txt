@@ -164,7 +164,7 @@ Each pane ultimately sends a JSON with:
   "user_input": { "text": "your prompt", "tags": ["multinav"] },
   "task_context": { "topic": "ad-hoc", "intent": "compare" },
   "client": { "surface": "multinav-app", "pane_id": "pane-1", "browser": "electron", "os": "win32", "device": "desktop" },
-  "model": { "provider": "chatgpt|gemini|grok|copilot|...", "name": "best-effort", "mode": "chat" },
+  "model": { "provider": "chatgpt|gemini|grok|claude|...", "name": "best-effort", "mode": "chat" },
   "response": { "text": "assistant reply", "raw_tokens": null, "latency_ms": 1234, "finish_reason": "stop" },
   "observations": { "contains_code": true, "has_citations": false, "ui_broke": false },
   "costing": {}
