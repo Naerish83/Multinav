@@ -22,6 +22,14 @@ const CONTROL_PRELOAD_PATH = path.join(DIST_DIR, 'preload_control.js');
 const VIEW_PRELOAD_PATH = path.join(DIST_DIR, 'preload_view.js');
 const CONTROL_INDEX_HTML = path.join(DIST_DIR, 'renderer', 'index.html');
 
+// Input selectors for AI providers
+const INPUT_SELECTORS = {
+  chatgpt: '#prompt-textarea',
+  claude: 'div.ProseMirror[contenteditable="true"]',
+  gemini: 'div.ql-editor.textarea[contenteditable="true"]',
+  grok: 'div.tiptap.ProseMirror[contenteditable="true"]'
+};
+
 // -------- ADDITIVE: Input modes --------
 type InputMode = 'control' | 'mirror' | 'none';
 let inputMode: InputMode = 'control';
@@ -322,19 +330,75 @@ function wireIPC() {
 
   ipcMain.handle('control:setMirrorEnabled', (_e, enabled: boolean) => setMirrorEnabled(enabled));
 
-  // MODIFIED: route control:sendText by inputMode (was spraying to all panes unconditionally)
-  ipcMain.handle('control:sendText', (_e, text: string) => {
+  // MODIFIED: route control:sendText by inputMode using DOM injection with verified selectors
+  ipcMain.handle('control:sendText', async (_e, text: string) => {
     if (!text) return;
+
+    const injectScript = `
+      (function() {
+        const message = ${JSON.stringify(text)};
+        const selectors = ${JSON.stringify(INPUT_SELECTORS)};
+
+        // Detect provider from hostname
+        const host = location.hostname;
+        let provider = null;
+        if (/chatgpt\\.com|chat\\.openai\\.com/i.test(host)) provider = 'chatgpt';
+        else if (/claude\\.ai/i.test(host)) provider = 'claude';
+        else if (/gemini\\.google\\.com/i.test(host)) provider = 'gemini';
+        else if (/grok\\.com|chat\\.x\\.ai/i.test(host)) provider = 'grok';
+
+        if (!provider) {
+          console.error('[Multinav] Unknown provider:', host);
+          return false;
+        }
+
+        const selector = selectors[provider];
+        const input = document.querySelector(selector);
+
+        if (!input) {
+          console.error(\`[Multinav] [\${provider}] Input element not found using selector: \${selector}\`);
+          return false;
+        }
+
+        // Set content for contenteditable divs or textarea
+        if (input.isContentEditable) {
+          input.textContent = message;
+        } else {
+          input.value = message;
+        }
+
+        // Trigger events so UI detects the change
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+
+        // Focus the input
+        input.focus();
+
+        console.log(\`[Multinav] [\${provider}] Message injected successfully\`);
+        return true;
+      })();
+    `;
+
     if (inputMode === 'control') {
       const targets = targetPaneIndices();
       for (const idx of targets) {
         const v = views[idx];
         if (!v) continue;
-        for (const ch of Array.from(text)) v.webContents.sendInputEvent({ type: 'char', keyCode: ch });
+        try {
+          await v.webContents.executeJavaScript(injectScript);
+        } catch (err) {
+          console.error(`Failed to inject text into view ${idx}:`, err);
+        }
       }
     } else if (inputMode === 'mirror' && leaderPane !== null) {
       const v = views[leaderPane];
-      if (v) for (const ch of Array.from(text)) v.webContents.sendInputEvent({ type: 'char', keyCode: ch });
+      if (v) {
+        try {
+          await v.webContents.executeJavaScript(injectScript);
+        } catch (err) {
+          console.error(`Failed to inject text into leader pane ${leaderPane}:`, err);
+        }
+      }
     } else {
       // none → do nothing
     }
