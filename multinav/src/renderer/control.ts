@@ -53,11 +53,15 @@ on(document, 'click', '.go-one', async (e) => {
   }
 });
 
-typebox.addEventListener('input', async () => {
-  const t = typebox.value;
-  if (!t) return;
-  await window.controlAPI.sendText(t);
-  typebox.value = '';
+// Send message on Enter (Ctrl+Enter for newline)
+typebox.addEventListener('keydown', async (e) => {
+  if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+    e.preventDefault();
+    const t = typebox.value.trim();
+    if (!t) return;
+    await window.controlAPI.sendText(t);
+    typebox.value = '';
+  }
 });
 
 on(document, 'click', '.kbtn', async (e) => {
