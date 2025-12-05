@@ -330,7 +330,7 @@ function wireIPC() {
 
   ipcMain.handle('control:setMirrorEnabled', (_e, enabled: boolean) => setMirrorEnabled(enabled));
 
-  // MODIFIED: route control:sendText by inputMode using DOM injection with verified selectors
+  // MODIFIED: route control:sendText by inputMode using robust Native Prototype approach
   ipcMain.handle('control:sendText', async (_e, text: string) => {
     if (!text) return;
 
@@ -360,21 +360,62 @@ function wireIPC() {
           return false;
         }
 
-        // Set content for contenteditable divs or textarea
-        if (input.isContentEditable) {
-          input.textContent = message;
+        // Native Prototype approach: bypass React/framework wrappers
+        if (input.tagName === 'TEXTAREA' || input.tagName === 'INPUT') {
+          // React State Hack for textarea/input elements (ChatGPT)
+          try {
+            const nativeSetter = Object.getOwnPropertyDescriptor(
+              window.HTMLTextAreaElement.prototype,
+              'value'
+            ).set;
+            nativeSetter.call(input, message);
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          } catch (err) {
+            console.error(\`[Multinav] [\${provider}] Native setter failed:\`, err);
+            // Fallback to direct assignment
+            input.value = message;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        } else if (input.isContentEditable) {
+          // Rich Text Editor Hack for ProseMirror/Quill (Claude/Gemini/Grok)
+          input.focus();
+
+          // Select all existing content first
+          document.execCommand('selectAll', false, null);
+
+          // Insert text using execCommand (triggers proper editor events)
+          const success = document.execCommand('insertText', false, message);
+
+          if (!success) {
+            // Fallback: try using ClipboardEvent simulation
+            console.warn(\`[Multinav] [\${provider}] execCommand failed, trying clipboard fallback\`);
+            try {
+              const dataTransfer = new DataTransfer();
+              dataTransfer.setData('text/plain', message);
+              const pasteEvent = new ClipboardEvent('paste', {
+                clipboardData: dataTransfer,
+                bubbles: true,
+                cancelable: true
+              });
+              input.dispatchEvent(pasteEvent);
+            } catch (err) {
+              console.error(\`[Multinav] [\${provider}] Clipboard fallback failed:\`, err);
+              // Last resort: direct textContent assignment
+              input.textContent = message;
+              input.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+          }
         } else {
-          input.value = message;
+          console.error(\`[Multinav] [\${provider}] Unknown input type\`);
+          return false;
         }
 
-        // Trigger events so UI detects the change
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-        input.dispatchEvent(new Event('change', { bubbles: true }));
-
-        // Focus the input
+        // Ensure input is focused
         input.focus();
 
-        console.log(\`[Multinav] [\${provider}] Message injected successfully\`);
+        console.log(\`[Multinav] [\${provider}] Message injected successfully using native prototype approach\`);
         return true;
       })();
     `;
